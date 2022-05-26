@@ -20,7 +20,7 @@ app = Flask(__name__)
 csp = (
     secure.ContentSecurityPolicy()
     .default_src("'self'")
-    .script_src("'self'")
+    .script_src("'sedlf'")
     .object_src('self')
     .connect_src('self')
 )

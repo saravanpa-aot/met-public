@@ -24,7 +24,7 @@ jwt = (
 
 
 class Auth:
-    """Extending JwtManager to include additional functionalities."""
+    """Extending JwtManager to include additiona. l functionalities."""
 
     @classmethod
     def require(cls, f):

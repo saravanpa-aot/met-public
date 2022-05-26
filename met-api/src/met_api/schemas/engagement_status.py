@@ -2,7 +2,7 @@ from marshmallow import EXCLUDE, Schema, fields
 
 
 """
-This class  consolidates schemas of extension operations.
+This class  consolidates schemas of extension operat.  ions.
 
 __author__      = "jad.saad@aot-technologies.com"
 

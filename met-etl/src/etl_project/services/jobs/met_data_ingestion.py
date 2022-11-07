@@ -1,5 +1,7 @@
 from dagster import job
-from ops.survey_etl_service import get_survey_last_run_cycle_time, extract_survey, load_survey, survey_end_run_cycle
+from ops.engagement_etl_service import load_engagement,get_engagement_last_run_cycle_time,extract_engagement
+from ops.survey_etl_service import get_survey_last_run_cycle_time, extract_survey, load_survey, \
+    survey_end_run_cycle
 from ops.submission_etl_service import get_submission_last_run_cycle_time, extract_submission, load_submission, \
     load_user_response_details, submission_end_run_cycle
 from ops.comments_etl_service import get_comments_last_run_cycle_time, extract_comments, load_comments, \
@@ -10,6 +12,14 @@ from resources.db import met_db_session, met_etl_db_session
 
 @job(resource_defs={"met_db_session": met_db_session, "met_etl_db_session": met_etl_db_session})
 def met_data_ingestion():
+
+    # etl for engagement
+    engagement_last_run_cycle_time, engagement_new_runcycleid_created = get_engagement_last_run_cycle_time()
+    updated_engagement, engagement_new_runcycleid_passed_to_load = extract_engagement(engagement_last_run_cycle_time,
+                                                                          engagement_new_runcycleid_created)
+    engagement_new_runcycleid_passed_to_end = load_engagement(updated_engagement,
+                                                      engagement_new_runcycleid_passed_to_load)
+
     # etl run for survey
     survey_last_run_cycle_time, survey_new_runcycleid_created = get_survey_last_run_cycle_time()
 

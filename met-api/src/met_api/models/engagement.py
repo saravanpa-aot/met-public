@@ -41,6 +41,7 @@ class Engagement(db.Model):
     rich_content = db.Column(JSON, unique=False, nullable=False)
     banner_filename = db.Column(db.String(), unique=False, nullable=True)
     surveys = db.relationship('Survey', backref='engagement', cascade='all, delete')
+    status_block = db.relationship('EngagementStatusBlock', backref='engagement')
 
     @classmethod
     def get_engagement(cls, engagement_id) -> Engagement:

@@ -28,7 +28,7 @@ from met_api.config import get_gc_notify_config
 
 
 class EngagementService:
-    """Engagement management service."""
+    """Engagement new management service."""
 
     otherdateformat = '%Y-%m-%d'
 
